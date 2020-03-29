@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, } from 'react-native';
+import { View, Text, Button, } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -23,7 +23,16 @@ const NuevaStack = createStackNavigator();
 function NuevaStackScreen(){
   return (
     <ListaStack.Navigator screenOptions={headerStyle}>
-      <ListaStack.Screen name="Nova Feina" component={NuevaScreen} />
+      <ListaStack.Screen name="Nova Feina" 
+      component={NuevaScreen} 
+      options={{ 
+        headerRight: () => (
+          <Button onPress={() => alert("El boton")}
+          title="Info"
+          color="#fff"
+          />
+        )
+      }}/>
     </ListaStack.Navigator>
   )
 }
