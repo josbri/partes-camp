@@ -27,7 +27,6 @@ export const FetesScreen = ({}) => {
       Date: "",
       Completed: false,
     },
-
   ]
   return (
     <TaskList 

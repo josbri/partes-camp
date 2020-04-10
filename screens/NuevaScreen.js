@@ -1,30 +1,52 @@
-import React from 'react';
-import {View, Text, TextInput, Button, StyleSheet } from 'react-native';
-import { Formik } from 'formik';
+import React, {useState} from 'react';
+import {View, Text, TextInput, Button, StyleSheet, Picker } from 'react-native';
 import Layout from "../constants/layout";
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-export function NuevaScreen() {
+export function NuevaScreen({}) {
+    const owners = [ "Juan Carlos", "Pepe Bria", "Josep Bria", "Benjamín"];
+    const [selectedOwner, setSelectedOwner] = useState("");
+    const [selectedCamp, setSelectedCamp] = useState("");
+    const [selectedFeina, setSelectedFeina] = useState("");
+
     return(
       <SafeAreaView style={styles.container}>
-          <Formik
-            initialValues={{ Owner: "" }}
-            onSubmit={(values) => {
-              alert(JSON.stringify(values));
-            }}
-            
+        <Text> Selecciona un propietari... </Text>
+          <Picker
+            selectedValue={selectedOwner}
+            style={styles.picker}
+            prompt="Propietari"
+            mode="dialog"
+            onValueChange={(itemValue, itemIndex) => setSelectedOwner(itemValue)}
           >
-            {formikProps => (
-              <React.Fragment>
-              <TextInput 
-                style={styles.input}
-                onChangeText={formikProps.handleChange("Owner")}
-              />
-              <Button title="Guardar" onPress={formikProps.handleSubmit}/>
-              <Button title="Cancelar" />
-              </React.Fragment>
-            )}
-          </Formik>
+            {owners.map((item, index) => {
+                return (< Picker.Item label={item} value={index} key={index} />);
+            })}   
+          </Picker>
+          <Text> Selecciona un camp... </Text>
+          <Picker
+            selectedValue={selectedCamp}
+            style={styles.picker}
+            prompt="Camp"
+            mode="dialog"
+            onValueChange={(itemValue, itemIndex) => setSelectedCamp(itemValue)}
+          >
+            {owners.map((item, index) => {
+                return (< Picker.Item label={item} value={index} key={index} />);
+            })}   
+          </Picker>
+          <Text> Selecciona una feina... </Text>
+          <Picker
+            selectedValue={selectedFeina}
+            style={styles.picker}
+            prompt="Feina"
+            mode="dialog"
+            onValueChange={(itemValue, itemIndex) => setSelectedFeina(itemValue)}
+          >
+            {owners.map((item, index) => {
+                return (< Picker.Item label={item} value={index} key={index} />);
+            })}   
+          </Picker>
       </SafeAreaView>
     )
   }
@@ -42,6 +64,7 @@ export function NuevaScreen() {
       marginBottom: 3,
       alignSelf: 'center'
     },
-
+    picker: {
+    }
   });
   

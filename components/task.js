@@ -7,7 +7,8 @@ export const Task = ({ task }) => {
     return (
         <TouchableWithoutFeedback>
             <View style={styles.container}>
-                <View style={task.Completed && true ? styles.cardCompleted : styles.cardNotCompleted}>
+                <View style={task.Completed && true ? 
+                styles.cardCompleted : styles.cardNotCompleted}>
                     <View style={styles.contentContainer}>
                         <Text style={styles.label}>
                             {task.Description} {task.Camp} 

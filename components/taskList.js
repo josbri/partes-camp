@@ -2,7 +2,6 @@ import React from 'react';
 import {View, FlatList, StyleSheet} from 'react-native';
 import { Task } from '../components/task'
 
-
 export const TaskList = ({type, tasks}) => {
     const getVisibletasks = (tasks, type) => {
         switch (type){
@@ -12,7 +11,6 @@ export const TaskList = ({type, tasks}) => {
                 return tasks.filter((t) => !t.Completed);
         }
     }
-
     tasks = getVisibletasks(tasks, type);
 
     return (
