@@ -1,4 +1,4 @@
-import { ADD_TASK, REMOVE_TASK } from './actions'
+import { ADD_TASK, REMOVE_TASK, FILTER_TASK } from './actions'
 
 const initialState = {
     tasks: [{
@@ -13,8 +13,8 @@ const initialState = {
       },
       {
         Id: 3,
-        Camp: "Oliver",
-        Owner: "Pepe Garcia",
+        Camp: "Espadilla",
+        Owner: "Pepe Cabudete",
         Description: "Segar",
         Material: "",
         Hours: 0,
@@ -24,10 +24,10 @@ const initialState = {
     {
         Id: 4,
         Camp: "Caseta",
-        Owner: "Pepe Bria",
+        Owner: "Benjamin",
         Description: "Polvorizar",
         Material: "400l Turbo",
-        Hours: 2,
+        Hours: 2.5,
         Date: "25/05/2020", 
         Completed: true
       },

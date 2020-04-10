@@ -2,32 +2,11 @@ import React from 'react';
 import {View, FlatList, StyleSheet} from 'react-native';
 import { Task } from '../components/task'
 import { TaskList } from '../components/taskList';
-
+import {useDispatch, useSelector} from 'react-redux'
 
 export const FetesScreen = ({}) => {
-  
-  const tasks = [
-    {
-      Id: 2,
-      Camp: "Caseta",
-      Owner: "Pepe Bria",
-      Description: "Polvorizar",
-      Material: "400l Turbo",
-      Hours: 2,
-      Date: "25/05/2020", 
-      Completed: true
-    },
-    {
-      Id: 3,
-      Camp: "Oliver",
-      Owner: "Pepe Garcia",
-      Description: "Segar",
-      Material: "",
-      Hours: 0,
-      Date: "",
-      Completed: false,
-    },
-  ]
+  const tasks = useSelector(state => state.taskReducer.tasks)
+
   return (
     <TaskList 
       type={'Completed'}
