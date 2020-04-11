@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Button, Image } from 'react-native';
+import { Image, TouchableOpacity, ScrollView } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
@@ -14,6 +14,19 @@ import { NouSeleccioScreen } from './screens/NouSeleccioScreen';
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import rootReducer from './reducers/index'
+import { DrawerActions } from '@react-navigation/native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+
+
+export default function App() {
+  return (
+    <Provider store={store}>
+      <NavigationContainer>
+        <MainDrawer/>
+      </NavigationContainer>
+    </Provider>
+  )
+}
 
 const Tab = createBottomTabNavigator();
 function MainTabs() {
@@ -23,14 +36,16 @@ function MainTabs() {
       <Tab.Screen name="Per fer" component={ListaStackScreen} />
       <Tab.Screen name="Acabades" component={FetesStackScreen} />
     </Tab.Navigator>
-
   )
 }
 
 const Drawer = createDrawerNavigator();
-function SettingsDrawer() {
+function MainDrawer() {
   return (
-    <Drawer.Navigator>
+    <Drawer.Navigator initialRouteName="MainTabs"
+    //drawerContent={props => CustomDrawerContent(props)}
+    >
+      <Drawer.Screen name="MainTab" component={MainTabs} />
       <Drawer.Screen name="Nou Client"
         component={NouClientScreen} />
       <Drawer.Screen name="Nou Camp"
@@ -43,26 +58,17 @@ function SettingsDrawer() {
 const NuevaStack = createStackNavigator();
 function NuevaStackScreen({ navigation }) {
   return (
-    <NuevaStack.Navigator screenOptions={headerStyle}>
+    <NuevaStack.Navigator initialRouteName="Nova Feina" screenOptions={headerStyle}>
       <NuevaStack.Screen name="Nova Feina"
         component={NuevaScreen}
         options={drawerButton(navigation)} />
-      <NuevaStack.Screen name="SeleccioClientsCamps"
-        component={NouSeleccioScreen}
-      />
-      <NuevaStack.Screen name="Nou Client"
-        component={NouClientScreen}
-      />
-      <NuevaStack.Screen name="Nou Camp"
-        component={NouCampScreen}
-      />
     </NuevaStack.Navigator>
   )
 }
 const ListaStack = createStackNavigator();
 function ListaStackScreen({ navigation }) {
   return (
-    <ListaStack.Navigator screenOptions={headerStyle}>
+    <ListaStack.Navigator initialRouteName="Feines per fer" screenOptions={headerStyle}>
       <ListaStack.Screen name="Feines per fer" component={ListaScreen}
         options={drawerButton(navigation)} />
     </ListaStack.Navigator>
@@ -72,28 +78,37 @@ function ListaStackScreen({ navigation }) {
 const FetesStack = createStackNavigator();
 function FetesStackScreen({ navigation }) {
   return (
-    <FetesStack.Navigator screenOptions={headerStyle}>
+    <FetesStack.Navigator initialRouteName="Feines Acabades" screenOptions={headerStyle}>
       <FetesStack.Screen name="Feines Acabades" component={FetesScreen}
         options={drawerButton(navigation)} />
     </FetesStack.Navigator>
   )
 }
-
-
-//STORE 
+ 
 
 const store = createStore(rootReducer)
-
-export default function App() {
-  return (
-    <Provider store={store}>
-      <NavigationContainer>
-        <MainTabs></MainTabs>
-      </NavigationContainer>
-    </Provider>
-
-  )
+function drawerButton(navigation) {
+  return ({
+    headerLeft: ({ }) => (
+      <TouchableHighlight onPress={() => navigation.openDrawer()}>
+        <Image
+          style={styles.icon}
+          source={require('./shared/icons/menu.png')}
+        />
+      </TouchableHighlight>
+    )
+  })
 }
+
+
+// function CustomDrawerContent(props){
+//   return (
+//     <SafeAreaView style={styles.DrawerStyle}>
+//         <ScrollView>
+//         </ScrollView>
+//     </SafeAreaView>
+//   )
+// }
 
 const headerStyle = ({
   headerTitleAlign: 'center',
@@ -125,18 +140,10 @@ const tabsStyle = ({
 const styles = ({
   icon: {
     tintColor: 'white',
+  },
+  DrawerStyle: {
+    flex: 1, 
+    backgroundColor: 'red'
   }
 })
 
-function drawerButton(navigation) {
-  return ({
-    headerLeft: ({ }) => (
-      <TouchableHighlight onPress={() => navigation.navigate('SeleccioClientsCamps')}>
-        <Image
-          style={styles.icon}
-          source={require('./shared/icons/personAdd.png')}
-        />
-      </TouchableHighlight>
-    )
-  })
-}
