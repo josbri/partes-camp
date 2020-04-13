@@ -9,7 +9,7 @@ const initialState = {
     Material: "400l Turbo",
     Hours: 2,
     Date: "25/05/2020",
-    Completed: true
+    Completed: true,
   },
   {
     Id: 3,
@@ -42,9 +42,10 @@ const initialState = {
     Completed: false,
   },
   ],
-  clients: [{ id: 1, name: "Juan Carlos" }, { id: 2, name: "Pepe Bria" }, { id: 3, name: "Josep Bria" }],
-  camps: [{ id: 1, owner: 1, name: "Caseta" }, { id: 2, owner: 2, name: "Caseta Pelaet" },
-  { id: 3, owner: 3, name: "Caseta Bria" }],
+  clients: [{ id: 1, name: "Juan Carlos", camps: [{ id: 1, owner: 1, name: "Caseta" }] },
+   { id: 2, name: "Pepe Bria", camps:[{ id: 2, owner: 2, name: "Caseta Pelaet" }] }, 
+   { id: 3, name: "Josep Bria", camps: [{ id: 3, owner: 3, name: "Caseta Bria" },{ id: 4, owner: 3, name: "Caseta Bria 2" },
+   { id: 5, owner: 3, name: "Caseta Bria 3" }]}],
   feines: [{id: 1, name: "Polvoritzar Tanque"}, {id: 2, name: "Polvoritzar Manguera"}, 
   {id: 3, name: "Herbicida Motxilla"}, {id: 4, name: "Herbicida Tractor"}, {id: 5, name: "Revisar Goteo"},
   {id: 6, name: "Picar"}]

@@ -7,7 +7,6 @@ import {useDispatch, useSelector} from 'react-redux'
 export function NuevaScreen({}) {
     const clients = useSelector(state => state.taskReducer.clients)
     const feines = useSelector(state => state.taskReducer.feines)
-    const camps = useSelector(state => state.taskReducer.camps)
     const [selectedOwner, setSelectedOwner] = useState( clients.length > 0 ? clients[0] : "");
     const [selectedCamp, setSelectedCamp] = useState("");
     const [selectedFeina, setSelectedFeina] = useState(feines.length > 0 ? feines[0] : "");
@@ -36,7 +35,7 @@ export function NuevaScreen({}) {
             mode="dialog"
             onValueChange={(itemValue) => setSelectedCamp(itemValue)}
           >
-            {camps.filter(camp => camp.owner === selectedOwner.id).map((item) => {
+            {selectedOwner.camps.map((item) => {
                 return (< Picker.Item label={item.name} value={item} key={item.id} />);
             })}   
           </Picker>
