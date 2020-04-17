@@ -7,6 +7,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { ListaScreen } from './screens/ListaScreen'
 import { FetesScreen } from './screens/FetesScreen'
 import { NuevaScreen } from './screens/NuevaScreen'
+import {NovaFeinaScreen} from './screens/NovaFeinaScreen'
 import { TouchableHighlight } from 'react-native-gesture-handler';
 import { NouClientScreen } from './screens/NouClientScreen';
 import { NouCampScreen } from './screens/NouCampScreen';
@@ -28,63 +29,61 @@ export default function App() {
   )
 }
 
-const Tab = createBottomTabNavigator();
-function MainTabs() {
+
+
+const NuevaStack = createStackNavigator();
+function MainStack({ navigation }) {
   return (
-    <Tab.Navigator tabBarOptions={tabsStyle}>
-      <Tab.Screen name="Nueva" component={NuevaStackScreen} />
-      <Tab.Screen name="Per fer" component={ListaStackScreen} />
-      <Tab.Screen name="Acabades" component={FetesStackScreen} />
-    </Tab.Navigator>
+    <NuevaStack.Navigator initialRouteName="List">
+      <NuevaStack.Screen name="New"
+        component={NuevaScreen}
+        options={{title: "Nova Feina"}} />
+        <NuevaStack.Screen name="List"
+        component={ListaScreen}
+        options={{title: "Feines"}} />
+    </NuevaStack.Navigator>
   )
 }
 
 const Drawer = createDrawerNavigator();
-function MainDrawer() {
-  return (
-    <Drawer.Navigator initialRouteName="MainTabs"
-    //drawerContent={props => CustomDrawerContent(props)}
-    screenOptions={headerStyle}
-    >
-      <Drawer.Screen name="MainTab" component={MainTabs} />
-      <Drawer.Screen name="Nou Client"
-        component={NouClientScreen} />
-      <Drawer.Screen name="Nou Camp"
-        component={NouCampScreen} />
-    </Drawer.Navigator>
-  )
+function MainDrawer({ navigation}) {
+  return(<Drawer.Navigator>
+    <Drawer.Screen name="Stack" component={MainStack}/>
+    <Drawer.Screen name="Nou Camp" component={NouCampScreen}/>
+    <Drawer.Screen name="Nou Client" component={NouClientScreen}/>
+    <Drawer.Screen name="Nova Feina" component={NovaFeinaScreen}/>
+  </Drawer.Navigator>)
 }
+// const Tab = createBottomTabNavigator();
+// function MainTabs() {
+//   return (
+//     <Tab.Navigator tabBarOptions={tabsStyle}>
+//       <Tab.Screen name="Per fer" component={ListaScreen} />
+//       <Tab.Screen name="Acabades" component={FetesScreen} />
+//     </Tab.Navigator>
+//   )
+// }
 
 
-const NuevaStack = createStackNavigator();
-function NuevaStackScreen({ navigation }) {
-  return (
-    <NuevaStack.Navigator initialRouteName="Nova Feina" screenOptions={headerStyle}>
-      <NuevaStack.Screen name="Nova Feina"
-        component={NuevaScreen}
-        options={drawerButton(navigation)} />
-    </NuevaStack.Navigator>
-  )
-}
-const ListaStack = createStackNavigator();
-function ListaStackScreen({ navigation }) {
-  return (
-    <ListaStack.Navigator initialRouteName="Feines per fer" screenOptions={headerStyle}>
-      <ListaStack.Screen name="Feines per fer" component={ListaScreen}
-        options={drawerButton(navigation)} />
-    </ListaStack.Navigator>
-  )
-}
+// const ListaStack = createStackNavigator();
+// function ListaStackScreen({ navigation }) {
+//   return (
+//     <ListaStack.Navigator initialRouteName="Feines per fer" screenOptions={headerStyle}>
+//       <ListaStack.Screen name="Feines per fer" component={ListaScreen}
+//         options={drawerButton(navigation)} />
+//     </ListaStack.Navigator>
+//   )
+// }
 
-const FetesStack = createStackNavigator();
-function FetesStackScreen({ navigation }) {
-  return (
-    <FetesStack.Navigator initialRouteName="Feines Acabades" screenOptions={headerStyle}>
-      <FetesStack.Screen name="Feines Acabades" component={FetesScreen}
-        options={drawerButton(navigation)} />
-    </FetesStack.Navigator>
-  )
-}
+// const FetesStack = createStackNavigator();
+// function FetesStackScreen({ navigation }) {
+//   return (
+//     <FetesStack.Navigator initialRouteName="Feines Acabades" screenOptions={headerStyle}>
+//       <FetesStack.Screen name="Feines Acabades" component={FetesScreen}
+//         options={drawerButton(navigation)} />
+//     </FetesStack.Navigator>
+//   )
+// }
  
 
 const store = createStore(rootReducer);

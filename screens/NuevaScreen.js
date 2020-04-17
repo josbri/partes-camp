@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import { Text, StyleSheet, Switch } from 'react-native';
+import {StyleSheet, Switch } from 'react-native';
 import Layout from "../constants/layout";
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch, useSelector } from 'react-redux'
-import { Button, Picker, Label, Form, Item, Textarea, Container } from 'native-base';
+import { Button, Picker, Label, Form, Item, Textarea, Container, Text } from 'native-base';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-export function NuevaScreen({ }) {
+export function NuevaScreen({ navigation }) {
   const clients = useSelector(state => state.taskReducer.clients)
   const feines = useSelector(state => state.taskReducer.feines)
   const [selectedOwner, setSelectedOwner] = useState(clients.length > 0 ? clients[0] : "");
@@ -78,7 +77,9 @@ export function NuevaScreen({ }) {
         <Button block rounded success style={styles.buttons}>
           <Text style={styles.buttontext}>GUARDAR</Text>
         </Button>
-        <Button block rounded danger style={styles.buttons}>
+        <Button block rounded danger 
+          style={styles.buttons}
+          onPress={()=> navigation.goBack()}>
           <Text style={styles.buttontext}>CANCELAR</Text>
         </Button>
 
@@ -87,7 +88,6 @@ export function NuevaScreen({ }) {
     </Container>
   )
 }
-
 
 const styles = StyleSheet.create({
   container: {
