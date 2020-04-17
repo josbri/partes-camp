@@ -44,6 +44,7 @@ function MainDrawer() {
   return (
     <Drawer.Navigator initialRouteName="MainTabs"
     //drawerContent={props => CustomDrawerContent(props)}
+    screenOptions={headerStyle}
     >
       <Drawer.Screen name="MainTab" component={MainTabs} />
       <Drawer.Screen name="Nou Client"
@@ -86,7 +87,8 @@ function FetesStackScreen({ navigation }) {
 }
  
 
-const store = createStore(rootReducer)
+const store = createStore(rootReducer);
+
 function drawerButton(navigation) {
   return ({
     headerLeft: ({ }) => (

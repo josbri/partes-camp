@@ -6,19 +6,14 @@ import {useDispatch, useSelector} from 'react-redux'
 
 
 export const ListaScreen = ({}) => {
-  
   const tasks = useSelector(state => state.taskReducer.tasks)
-  console.log(tasks)
-
   return (
     <TaskList 
       type={'NotCompleted'}
       tasks={tasks}
       />
   )
-
 };
-
 const styles = StyleSheet.create({
   container: {
       flex: 1,
