@@ -1,18 +1,17 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
-import Layout from "../constants/layout";
-import { Content, Card, CardItem, Body , Button} from 'native-base';
+import { Content, Card, CardItem, Body , Button, Layout, Header} from '@ui-kitten/components';
+
 export const Task = ({ task }) => {
     return (
-        <Content padder>
+        <View >
             <Card style={styles.container}>
-                <CardItem header bordered>
+                <Header>
                     <Text style={styles.label}>
                         {task.Description} {task.Camp}
                     </Text>
-                </CardItem>
-                <CardItem bordered>
+                </Header>
                     <Body>
                     <Text style={styles.content}>
                             {task.Owner}
@@ -25,14 +24,11 @@ export const Task = ({ task }) => {
                             }
                         </Text>
                     </Body>
-                </CardItem>
-                <CardItem footer bordered>
                     <Button>
                         <Text>Feta</Text>
                     </Button>
-                </CardItem>
             </Card>
-        </Content>
+        </View>
     )
 }
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, FlatList, StyleSheet } from 'react-native';
 import { Task } from '../components/task'
-import { Button, Text, Container } from 'native-base';
+import { Button, Text, Container, List, Layout } from '@ui-kitten/components';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 export const TaskList = ({ type, tasks, navigation }) => {
@@ -16,8 +16,8 @@ export const TaskList = ({ type, tasks, navigation }) => {
   tasks = getVisibletasks(tasks, type);
 
   return (
-    <Container style={styles.container}>
-      <FlatList
+    <Layout style={styles.container}>
+      <List
         style={styles.flatlist}
         scrollEventThrottle={1}
         data={tasks}
@@ -36,7 +36,7 @@ export const TaskList = ({ type, tasks, navigation }) => {
           <Icon name="ios-add" size={55} style={{padding: 10, color: "white"}} ></Icon>
         </Button>
       </View>
-    </Container>
+    </Layout>
   )
 };
 

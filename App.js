@@ -9,9 +9,8 @@ import { FetesScreen } from './screens/FetesScreen'
 import { NuevaScreen } from './screens/NuevaScreen'
 import {NovaFeinaScreen} from './screens/NovaFeinaScreen'
 import { TouchableHighlight } from 'react-native-gesture-handler';
-import { NouClientScreen } from './screens/NouClientScreen';
+import { ClientScreen } from './screens/ClientScreen';
 import { NouCampScreen } from './screens/NouCampScreen';
-import { NouSeleccioScreen } from './screens/NouSeleccioScreen';
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import rootReducer from './reducers/index'
@@ -49,8 +48,7 @@ const Drawer = createDrawerNavigator();
 function MainDrawer({ navigation}) {
   return(<Drawer.Navigator>
     <Drawer.Screen name="Stack" component={MainStack}/>
-    <Drawer.Screen name="Nou Camp" component={NouCampScreen}/>
-    <Drawer.Screen name="Nou Client" component={NouClientScreen}/>
+    <Drawer.Screen name="Clients" component={ClientScreen}/>
     <Drawer.Screen name="Nova Feina" component={NovaFeinaScreen}/>
   </Drawer.Navigator>)
 }
